@@ -2,5 +2,6 @@
 	"token": "NDIwNzc5OTk3MzM1MjU3MDk5.DYDpbQ.xHfCKSP8R2ZzaY9q0EY5Nxg6ptA",
 	"youtube_api_token": "AIzaSyBn5BgNqvEzC1RmV6g9dQVf8y_7STmejIA",
 	"prefix": ".",
-	"allowed_prefixes": [".", "!", "&"]
+	"allowed_prefixes": [".", "!", "&"],
+	"passes": "1"
 }
