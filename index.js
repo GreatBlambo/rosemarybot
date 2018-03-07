@@ -29,6 +29,7 @@ const fs = require("fs");
 	15. Add playlist by url
 	16. Soundcloud support
 	17. Statistics
+	18. Separate queue into its own file
 */
 
 function Queue() {
