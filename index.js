@@ -41,13 +41,9 @@ function Queue() {
 	this.join = function (msg) {
 		return new Promise ((resolve, reject) => {
 			if (!msg.member.voiceChannel || msg.member.voiceChannel.type != "voice")
-			{
 				return msg.reply("You're not in a voice channel!");
-			}
 			if (!msg.member.voiceChannel.joinable)
-			{
 				return msg.reply("I can't join the voice channel you're in");
-			}
 
 			msg.member.voiceChannel.join().then(connection => resolve(connection)).catch(err => reject(err));
 		});
@@ -66,13 +62,12 @@ function Queue() {
 		this.dispatcher.on("end", (reason) => {
 			next_song_id = (this.current_song_id + 1) % this.songs.length;
 
-			if (next_song_id > this.current_song_id || this.loop)
-			{
+			if (next_song_id > this.current_song_id || this.loop) {
 				this.current_song_id = next_song_id;
 				this.play(msg);
-			}
-			else
+			} else {
 				msg.channel.send("The queue has finished playing. Thanks for listening!");
+			}
 		});
 		this.dispatcher.on("error", (e) => {
 			this.force_skip(msg);
@@ -95,8 +90,7 @@ function Queue() {
 		msg.channel.send("Song resumed");
 	};
 	this.list_queue = function (msg) {
-		if (this.songs.length == 0)
-		{
+		if (this.songs.length == 0) {
 			msg.channel.send("The queue is empty");
 			return;
 		}
@@ -154,17 +148,14 @@ client.on('message', msg => {
 	const args = msg.content.slice(config.prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 
-	if (!queue[command])
-	{
+	if (!queue[command]) {
 		try {
 			let commandFile = require(`./events/${command}.js`);
 			commandFile.run(client, msg, args, queue);
 		} catch (err) {
 			console.error(err);
 		}
-	}
-	else
-	{
+	} else {
 		queue[command](msg);
 	}
 });
